@@ -8,11 +8,13 @@ const LoginForm = () => {
   const navigate = useNavigate(); 
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    console.log("Submitting login form with values:", values);
     try {
-      await dispatch(login(values)).unwrap(); 
+      const response = await dispatch(login(values)).unwrap();
+      console.log("Login successful:", response);
       navigate("/contacts");
     } catch (error) {
-      console.error("Login failed", error);
+      console.error("Login failed:", error);
     } finally {
       setSubmitting(false);
     }
